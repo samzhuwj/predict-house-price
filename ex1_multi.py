@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from featureNormalize import *
-from gradientDescent import *
-from normalEqn import *
+from featureNormalize import feature_normalize
+from gradientDescent import gradient_descent
+from normalEqn import normal_eqn
 
 
 plt.ion()
@@ -49,8 +49,6 @@ X = np.c_[np.ones(m), X]  # Add a column of ones to X
 #                to predict the price of a 1650 sq-ft, 3 br house.
 #
 # Hint: At prediction, make sure you do the same feature normalization.
-#
-
 print('Running gradient descent ...')
 
 # Choose some alpha value
@@ -59,7 +57,7 @@ num_iters = 400
 
 # Init theta and Run Gradient Descent
 theta = np.zeros(3)
-theta, J_history = gradient_descent_multi(X, y, theta, alpha, num_iters)
+theta, J_history = gradient_descent(X, y, theta, alpha, num_iters)
 
 # Plot the convergence graph
 plt.figure()
@@ -99,8 +97,6 @@ print('Solving with normal equations ...')
 #
 #                After doing so, you should complete this code
 #                to predict the price of a 1650 sq-ft, 3 br house.
-#
-
 # Load data
 data = np.loadtxt('ex1data2.txt', delimiter=',', dtype=np.int64)
 X = data[:, 0:2]
@@ -109,7 +105,6 @@ m = y.size
 
 # Add intercept term to X
 X = np.c_[np.ones(m), X]
-
 theta = normal_eqn(X, y)
 
 # Display normal equation's result
